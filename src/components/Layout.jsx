@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
-  Shield,
   LayoutDashboard,
   ShoppingBag,
   ArrowLeftRight,
@@ -11,8 +10,20 @@ import {
   LogOut,
   Menu,
   X,
-  MapPin
+  MapPin,
+  ArrowLeft
 } from 'lucide-react';
+
+const PAGE_TITLES = {
+  '/dashboard': 'Dashboard',
+  '/settings': 'Bases',
+  '/assets': 'Assets',
+  '/purchases': 'Purchases',
+  '/transfers': 'Transfers',
+  '/assignments': 'Assignments',
+  '/expenditures': 'Expenditures',
+  '/audit-logs': 'Audit Logs',
+};
 
 const Layout = ({ children }) => {
   const { user, logout } = useAuth();
@@ -33,7 +44,6 @@ const Layout = ({ children }) => {
     if (user?.role === 'Admin') {
       return [
         ...baseItems,
-        { name: 'Users', href: '/settings', icon: Shield },
         { name: 'Bases', href: '/settings', icon: MapPin },
         { name: 'Assets', href: '/assets', icon: ClipboardList },
         { name: 'Purchases', href: '/purchases', icon: ShoppingBag },
@@ -60,6 +70,9 @@ const Layout = ({ children }) => {
   };
 
   const navItems = getNavItems();
+
+  const currentPath = location.pathname;
+  const pageTitle = PAGE_TITLES[currentPath] || '';
 
   return (
     <div className="flex h-screen bg-military-bg">
@@ -129,6 +142,23 @@ const Layout = ({ children }) => {
 
       {/* Main Content Area */}
       <main className="flex-1 overflow-auto md:ml-64">
+        {/* Top bar with back navigation */}
+        <div className="sticky top-0 z-20 flex items-center gap-3 border-b border-military-border bg-[#0d1321]/95 backdrop-blur px-6 py-3 pl-16 md:pl-6">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-1.5 rounded-lg border border-military-border bg-[#2c3e50]/40 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:bg-[#2c3e50] hover:text-white"
+            aria-label="Go back"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back
+          </button>
+          {pageTitle && (
+            <span className="text-sm font-semibold uppercase tracking-widest text-gray-400">
+              {pageTitle}
+            </span>
+          )}
+        </div>
+
         <div className="p-6">
           {children}
         </div>
