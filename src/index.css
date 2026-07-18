@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 /* ===================================================
@@ -6,18 +6,19 @@
 =================================================== */
 
 @theme {
-  --font-sans: "Outfit", sans-serif;
+  --font-sans: 'Inter', 'Segoe UI', sans-serif;
 
-  --color-military-bg: #0f172a;
-  --color-military-surface: #1e293b;
-  --color-military-card: #1f2937;
-  --color-military-border: #334155;
-  --color-military-hover: #475569;
+  --color-military-bg: #0d1117;
+  --color-military-surface: #161b22;
+  --color-military-card: #161b22;
+  --color-military-border: #30363d;
+  --color-military-hover: #21262d;
 
-  --color-military-text: #f8fafc;
-  --color-military-muted: #94a3b8;
+  --color-military-text: #c9d1d9;
+  --color-military-muted: #8b949e;
 
-  --color-military-primary: #10b981;
+  --color-military-primary: #3d6f42;
+  --color-military-primary-hover: #2a4d2e;
   --color-military-secondary: #f97316;
   --color-military-danger: #ef4444;
   --color-military-warning: #f59e0b;
@@ -51,18 +52,6 @@
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    background-image:
-      radial-gradient(
-        at 0% 0%,
-        rgb(16 185 129 / 0.05),
-        transparent 50%
-      ),
-      radial-gradient(
-        at 100% 100%,
-        rgb(249 115 22 / 0.03),
-        transparent 50%
-      );
   }
 
   a {
@@ -90,7 +79,7 @@
   }
 
   ::selection {
-    background: rgb(16 185 129 / 0.30);
+    background: rgb(61 111 66 / 0.30);
   }
 
   ::-webkit-scrollbar {
@@ -108,7 +97,7 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-military-hover);
+    background: var(--color-military-muted);
   }
 }
 
@@ -117,87 +106,69 @@
 =================================================== */
 
 @layer components {
-  .glass {
-    background: rgb(30 41 59 / 0.70);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgb(255 255 255 / 0.08);
-  }
-
-  .glass-header {
-    background: rgb(15 23 42 / 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgb(255 255 255 / 0.08);
-  }
-
   .card {
     background: var(--color-military-card);
     border: 1px solid var(--color-military-border);
-    border-radius: 12px;
+    border-radius: 0.75rem;
     padding: 1.5rem;
   }
 
-  .btn-primary {
+  .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0.65rem 1.4rem;
+    padding: 0.5rem 1rem;
 
-    border-radius: 10px;
+    border-radius: 0.5rem;
 
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
     background: var(--color-military-primary);
-
     color: white;
-
-    font-weight: 600;
-
-    transition: all 0.3s ease;
   }
 
   .btn-primary:hover {
-    filter: brightness(1.08);
-    transform: translateY(-2px);
+    background: var(--color-military-primary-hover);
   }
 
   .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0.65rem 1.4rem;
-
-    border-radius: 10px;
-
-    background: var(--color-military-secondary);
-
-    color: white;
-
-    font-weight: 600;
-
-    transition: all 0.3s ease;
+    background: #21262d;
+    color: var(--color-military-text);
+    border: 1px solid var(--color-military-border);
   }
 
   .btn-secondary:hover {
-    filter: brightness(1.08);
-    transform: translateY(-2px);
+    background: var(--color-military-hover);
+  }
+
+  .btn-danger {
+    background: #da3633;
+    color: white;
+  }
+
+  .btn-danger:hover {
+    background: #b62324;
   }
 
   .input {
     width: 100%;
 
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.75rem;
 
-    border-radius: 10px;
+    border-radius: 0.5rem;
 
     border: 1px solid var(--color-military-border);
 
-    background: var(--color-military-surface);
+    background: var(--color-military-bg);
 
     color: var(--color-military-text);
 
-    transition: 0.25s;
+    transition: 0.2s;
   }
 
   .input::placeholder {
@@ -206,38 +177,10 @@
 
   .input:focus {
     border-color: var(--color-military-primary);
-
-    box-shadow: 0 0 0 3px rgb(16 185 129 / 0.20);
-  }
-}
-
-/* ===================================================
-   Utilities
-=================================================== */
-
-@layer utilities {
-  .text-gradient {
-    background: linear-gradient(
-      90deg,
-      var(--color-military-primary),
-      var(--color-military-secondary)
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
+    box-shadow: 0 0 0 3px rgb(61 111 66 / 0.20);
   }
 
-  .border-gradient {
-    border-image: linear-gradient(
-      90deg,
-      var(--color-military-primary),
-      var(--color-military-secondary)
-    ) 1;
-  }
-
-  .shadow-glow {
-    box-shadow: 0 0 20px rgb(16 185 129 / 0.25);
+  .table-row:hover {
+    background: var(--color-military-hover);
   }
 }

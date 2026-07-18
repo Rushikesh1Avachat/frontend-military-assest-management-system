@@ -49,7 +49,7 @@ const DashboardChart = ({ loading, metrics, dateRange }) => {
   };
 
   return (
-    <div className="p-6 glass border border-military-border rounded-xl">
+    <div className="p-6 card border border-military-border rounded-xl">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-5">
         <div>
           <h2 className="text-lg font-bold text-military-text tracking-wide flex items-center gap-2">
@@ -61,22 +61,22 @@ const DashboardChart = ({ loading, metrics, dateRange }) => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-military-textMuted">
-          <div className="px-2 py-1 rounded border border-military-border bg-slate-900/30 font-mono">
-            {dateRange?.startDate} → {dateRange?.endDate}
+          <div className="flex items-center gap-3 text-xs text-military-muted">
+            <div className="px-2 py-1 rounded border border-military-border bg-military-bg font-mono">
+              {dateRange?.startDate} → {dateRange?.endDate}
+            </div>
+            <div className="hidden sm:flex items-center gap-2 px-2 py-1 rounded border border-military-border bg-military-bg">
+              <ShieldCheck className="h-4 w-4 text-military-primary" />
+              <span className="font-semibold">Filtered</span>
+            </div>
           </div>
-          <div className="hidden sm:flex items-center gap-2 px-2 py-1 rounded border border-military-border bg-slate-900/30">
-            <ShieldCheck className="h-4 w-4 text-military-accent" />
-            <span className="font-semibold">Filtered</span>
-          </div>
-        </div>
       </div>
 
       {loading ? (
         <div className="text-center py-10">
-          <div className="inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-military-border/60 bg-slate-900/30">
-            <div className="h-2 w-2 rounded-full bg-military-accent animate-pulse" />
-            <span className="text-sm text-military-textMuted">Updating chart…</span>
+          <div className="inline-flex items-center gap-3 px-4 py-3 rounded-lg border border-military-border bg-military-bg">
+            <div className="h-2 w-2 rounded-full bg-military-primary animate-pulse" />
+            <span className="text-sm text-military-muted">Updating chart…</span>
           </div>
         </div>
       ) : (
