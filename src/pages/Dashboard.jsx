@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 
 import { CardHeading } from '../components/ui/ParityPrimitives';
+import DashboardChart from '../components/DashboardChart';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -60,7 +61,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchBases = async () => {
       try {
-        const res = await api.get('/api/bases');
+        const res = await api.get('bases');
         setBases(res.data);
       } catch (err) {
         console.error('Error fetching bases:', err);
@@ -88,7 +89,7 @@ const Dashboard = () => {
         assetType: selectedType
       };
 
-      const response = await api.get('/dashboard', { params });
+      const response = await api.get('dashboard', { params });
       setMetrics(response.data.metrics);
       setDetails(response.data.details);
       setCurrentStockList(response.data.currentStockList);
@@ -299,6 +300,8 @@ const Dashboard = () => {
         </div>
 
       </div>
+
+      <DashboardChart loading={loading} metrics={metrics} dateRange={{ startDate, endDate }} />
 
       {/* Current Stock Ledger Section */}
       <div className="p-6 glass border border-military-border rounded-xl">

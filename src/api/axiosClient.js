@@ -7,6 +7,16 @@ export const api = axios.create({
   timeout: 30000,
 });
 
+api.interceptors.request.use((config) => {
+  if (config.method === 'get') {
+    config.params = {
+      ...(config.params || {}),
+      _t: Date.now(),
+    };
+  }
+  return config;
+});
+
 export const setAuthToken = (jwtToken) => {
   if (jwtToken) {
     api.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;

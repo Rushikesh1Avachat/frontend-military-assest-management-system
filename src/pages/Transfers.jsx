@@ -52,8 +52,8 @@ const Transfers = () => {
     const fetchOptions = async () => {
       try {
         const [assetsRes, basesRes] = await Promise.all([
-          api.get('/assets'),
-          api.get('/bases')
+          api.get('assets'),
+          api.get('bases')
         ]);
         setAssets(assetsRes.data);
         setBases(basesRes.data);
@@ -76,7 +76,7 @@ const Transfers = () => {
       if (formData.assetId && formData.fromBaseId) {
         setCheckingStock(true);
         try {
-          const res = await api.get('/inventory', {
+          const res = await api.get('inventory', {
             params: {
               baseId: formData.fromBaseId,
               assetId: formData.assetId
@@ -116,7 +116,7 @@ const Transfers = () => {
         params.baseId = filterBase;
       }
 
-      const res = await api.get('/transfers', { params });
+      const res = await api.get('transfers', { params });
       setTransfers(res.data);
     } catch (err) {
       console.error('Error loading transfers logs:', err);
@@ -162,7 +162,7 @@ const Transfers = () => {
     }
 
     try {
-      await api.post('/api/transfers', formData);
+      await api.post('transfers', formData);
       const msg = `Transfer of ${formData.quantity} asset unit(s) authorized and logged.`;
       setMessage({ type: 'success', text: msg });
       toast.success(msg);

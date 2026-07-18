@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         setAuthToken(token);
         try {
-          const response = await api.get('/auth/me');
+          const response = await api.get('auth/me');
           setUser(response.data);
         } catch (err) {
           console.error('Session expired or invalid token:', err.message);
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       setError(null);
 
       try {
-        const response = await api.post('/auth/login', { email, password });
+        const response = await api.post('auth/login', { email, password });
         // Only accept results from the latest request
         if (requestIdRef.current !== currentRequestId) return;
 

@@ -30,7 +30,7 @@ const Settings = () => {
   const fetchBases = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/bases');
+      const res = await api.get('bases');
       setBases(res.data);
     } catch (err) {
       console.error('fetchBases error:', err);
@@ -64,7 +64,7 @@ const Settings = () => {
     setSubmitting(true);
     setMessage(null);
     try {
-      await api.post('/api/bases', formData);
+      await api.post('bases', formData);
       const msg = `Base '${formData.name}' created.`;
       setMessage({ type: 'success', text: msg });
       toast.success(msg);

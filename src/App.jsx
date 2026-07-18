@@ -13,7 +13,6 @@ import Expenditures from './pages/Expenditures';
 import Settings from './pages/Settings';
 import { Loader2 } from 'lucide-react';
 
-
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, token, loading } = useAuth();
 
@@ -41,6 +40,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 
 const App = () => {
   return (
+    <>
     <Router>
       <AuthProvider>
         <Routes>
@@ -132,7 +132,9 @@ const App = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
+      
     </Router>
+    </>
   );
 };
 

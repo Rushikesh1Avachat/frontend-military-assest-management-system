@@ -48,8 +48,8 @@ const Purchases = () => {
     const fetchOptions = async () => {
       try {
         const [assetsRes, basesRes] = await Promise.all([
-          api.get('/assets'),
-          api.get('/bases')
+          api.get('assets'),
+          api.get('bases')
         ]);
         setAssets(assetsRes.data);
         setBases(basesRes.data);
@@ -82,7 +82,7 @@ const Purchases = () => {
         params.baseId = filterBase;
       }
 
-      const res = await api.get('/purchases', { params });
+      const res = await api.get('purchases', { params });
       setPurchases(res.data);
     } catch (err) {
       console.error('Error loading purchases list:', err);
@@ -112,7 +112,7 @@ const Purchases = () => {
     }
 
     try {
-      await api.post('/api/purchases', formData);
+      await api.post('purchases', formData);
       const msg = `Acquisition of ${formData.quantity} unit(s) recorded and logged in active inventory.`;
       setMessage({ type: 'success', text: msg });
       toast.success(msg);

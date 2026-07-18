@@ -81,14 +81,14 @@ const Assignments = () => {
     fetchOptions();
   }, [user]);
 
-  // Check live stock for assignment form
+    // Check live stock for assignment form
   useEffect(() => {
     const checkAssignStock = async () => {
       const { assetId, baseId } = assignForm;
       if (assetId && baseId) {
         setCheckingStock(true);
         try {
-          const res = await api.get('/inventory', { params: { assetId, baseId } });
+          const res = await api.get('inventory', { params: { assetId, baseId } });
           if (res.data && res.data.length > 0) {
             setAvailableStock(res.data[0].currentStock);
           } else {
@@ -107,14 +107,14 @@ const Assignments = () => {
     if (activeMode === 'assignments') checkAssignStock();
   }, [assignForm.assetId, assignForm.baseId, activeMode]);
 
-  // Check live stock for expenditure form
+    // Check live stock for expenditure form
   useEffect(() => {
     const checkExpendStock = async () => {
       const { assetId, baseId } = expendForm;
       if (assetId && baseId) {
         setCheckingStock(true);
         try {
-          const res = await api.get('/inventory', { params: { assetId, baseId } });
+          const res = await api.get('inventory', { params: { assetId, baseId } });
           if (res.data && res.data.length > 0) {
             setAvailableStock(res.data[0].currentStock);
           } else {
@@ -143,10 +143,10 @@ const Assignments = () => {
       }
 
       if (activeMode === 'assignments') {
-        const res = await api.get('/assignments', { params });
+        const res = await api.get('assignments', { params });
         setAssignments(res.data);
       } else {
-        const res = await api.get('/expenditures', { params });
+        const res = await api.get('expenditures', { params });
         setExpenditures(res.data);
       }
     } catch (err) {
@@ -183,7 +183,7 @@ const Assignments = () => {
     }
 
     try {
-      await api.post('/assignments', assignForm);
+      await api.post('assignments', assignForm);
       setMessage({ type: 'success', text: `Successfully assigned ${qty} unit(s) to ${assignForm.assignedTo}.` });
       
       // Reset form
@@ -229,7 +229,7 @@ const Assignments = () => {
 
 
     try {
-      await api.post('/expenditures', expendForm);
+      await api.post('expenditures', expendForm);
       const msg = `Expenditure of ${qty} unit(s) logged successfully.`;
       setMessage({ type: 'success', text: msg });
       toast.success(msg);

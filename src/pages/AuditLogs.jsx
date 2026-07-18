@@ -23,7 +23,7 @@ const AuditLogs = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const res = await api.get('/audit-logs');
+        const res = await api.get('audit-logs');
         setLogs(res.data);
       } catch (err) {
         console.error('Error fetching audit logs:', err);

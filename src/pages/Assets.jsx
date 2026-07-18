@@ -34,7 +34,7 @@ const Assets = () => {
   const fetchAssets = async () => {
     setLoading(true);
     try {
-      const res = await api.get('/assets');
+      const res = await api.get('assets');
       setAssets(res.data);
     } catch (err) {
       console.error('fetchAssets error:', err);
@@ -70,7 +70,7 @@ const Assets = () => {
     setMessage(null);
 
     try {
-      await api.post('/api/assets', formData);
+      await api.post('assets', formData);
       const msg = `Asset '${formData.name}' created successfully.`;
       setMessage({ type: 'success', text: msg });
       toast.success(msg);
