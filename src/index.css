@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* ===================================================
+   Theme
+=================================================== */
+
+@theme {
+  --font-sans: "Outfit", sans-serif;
+
+  --color-military-bg: #0f172a;
+  --color-military-surface: #1e293b;
+  --color-military-card: #1f2937;
+  --color-military-border: #334155;
+  --color-military-hover: #475569;
+
+  --color-military-text: #f8fafc;
+  --color-military-muted: #94a3b8;
+
+  --color-military-primary: #10b981;
+  --color-military-secondary: #f97316;
+  --color-military-danger: #ef4444;
+  --color-military-warning: #f59e0b;
+}
+
+/* ===================================================
+   Base
+=================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--color-military-bg);
+    color: var(--color-military-text);
+
+    font-family: var(--font-sans);
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-image:
+      radial-gradient(
+        at 0% 0%,
+        rgb(16 185 129 / 0.05),
+        transparent 50%
+      ),
+      radial-gradient(
+        at 100% 100%,
+        rgb(249 115 22 / 0.03),
+        transparent 50%
+      );
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background: none;
+  }
+
+  input,
+  textarea,
+  select {
+    font: inherit;
+    outline: none;
+  }
+
+  ::selection {
+    background: rgb(16 185 129 / 0.30);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-military-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-military-border);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-military-hover);
+  }
+}
+
+/* ===================================================
+   Components
+=================================================== */
+
+@layer components {
+  .glass {
+    background: rgb(30 41 59 / 0.70);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .glass-header {
+    background: rgb(15 23 42 / 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .card {
+    background: var(--color-military-card);
+    border: 1px solid var(--color-military-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.65rem 1.4rem;
+
+    border-radius: 10px;
+
+    background: var(--color-military-primary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.65rem 1.4rem;
+
+    border-radius: 10px;
+
+    background: var(--color-military-secondary);
+
+    color: white;
+
+    font-weight: 600;
+
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+  }
+
+  .input {
+    width: 100%;
+
+    padding: 0.75rem 1rem;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--color-military-border);
+
+    background: var(--color-military-surface);
+
+    color: var(--color-military-text);
+
+    transition: 0.25s;
+  }
+
+  .input::placeholder {
+    color: var(--color-military-muted);
+  }
+
+  .input:focus {
+    border-color: var(--color-military-primary);
+
+    box-shadow: 0 0 0 3px rgb(16 185 129 / 0.20);
+  }
+}
+
+/* ===================================================
+   Utilities
+=================================================== */
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--color-military-primary),
+      var(--color-military-secondary)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(
+      90deg,
+      var(--color-military-primary),
+      var(--color-military-secondary)
+    ) 1;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px rgb(16 185 129 / 0.25);
+  }
+}
