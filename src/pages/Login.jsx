@@ -21,10 +21,15 @@ const Login = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Login failed');
+      setError(err.message || 'Invalid email or password');
     } finally {
       setLoading(false);
     }
+  };
+
+  const fillCredentials = (demoEmail, demoPassword) => {
+    setEmail(demoEmail);
+    setPassword(demoPassword);
   };
 
   return (
@@ -86,23 +91,44 @@ const Login = () => {
           </form>
 
           <div className="mt-8 pt-8 border-t border-military-border">
-            <h3 className="text-white font-semibold mb-4 text-sm">Demo Credentials:</h3>
+            <h3 className="text-white font-semibold mb-4 text-sm">Authorized Login Credentials:</h3>
             <div className="space-y-3 text-sm">
-              <div className="bg-military-bg p-3 rounded border border-military-border">
+              <button
+                type="button"
+                onClick={() => fillCredentials('avachatrushikesh45@gmail.com', 'Rushi123')}
+                className="w-full text-left bg-military-bg p-3 rounded border border-military-border hover:border-military-accent transition-colors"
+              >
+                <p className="text-military-muted">Owner (Admin):</p>
+                <p className="text-military-text">avachatrushikesh45@gmail.com</p>
+                <p className="text-military-muted">Rushi123</p>
+              </button>
+              <button
+                type="button"
+                onClick={() => fillCredentials('admin@military.com', 'Admin@123')}
+                className="w-full text-left bg-military-bg p-3 rounded border border-military-border hover:border-military-accent transition-colors"
+              >
                 <p className="text-military-muted">Admin:</p>
                 <p className="text-military-text">admin@military.com</p>
                 <p className="text-military-muted">Admin@123</p>
-              </div>
-              <div className="bg-military-bg p-3 rounded border border-military-border">
+              </button>
+              <button
+                type="button"
+                onClick={() => fillCredentials('commander@military.com', 'Commander@123')}
+                className="w-full text-left bg-military-bg p-3 rounded border border-military-border hover:border-military-accent transition-colors"
+              >
                 <p className="text-military-muted">Commander:</p>
                 <p className="text-military-text">commander@military.com</p>
                 <p className="text-military-muted">Commander@123</p>
-              </div>
-              <div className="bg-military-bg p-3 rounded border border-military-border">
+              </button>
+              <button
+                type="button"
+                onClick={() => fillCredentials('logistics@military.com', 'Logistics@123')}
+                className="w-full text-left bg-military-bg p-3 rounded border border-military-border hover:border-military-accent transition-colors"
+              >
                 <p className="text-military-muted">Logistics:</p>
                 <p className="text-military-text">logistics@military.com</p>
                 <p className="text-military-muted">Logistics@123</p>
-              </div>
+              </button>
             </div>
           </div>
         </div>
